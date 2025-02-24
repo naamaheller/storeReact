@@ -6,7 +6,7 @@ import Cart from "./pages/Cart";
 import CartDrawer from "./components/CartDrawer";
 import { useSelector } from "react-redux";
 import ShowProduct from './pages/ShowProduct';
-
+import LogIn from './pages/Login';
 
 function App() {
   const isCartOpen = useSelector((state) => state.cart.isCartOpen);
@@ -19,9 +19,12 @@ function App() {
           <Route path='details/:id' element={<ShowProduct />} />
         </Route>
         <Route path="/cart" element={<Cart />} />
+        <Route path="/LogIn" element={<LogIn/>} />
       </Routes >
       {isCartOpen && <CartDrawer />
       }
+          
+
     </>
   );
 }

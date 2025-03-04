@@ -1,7 +1,10 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { checkUser } from "../api/userService";
+import { checkUser ,login } from "../api/userService";
+import { useDispatch } from "react-redux";
+import { userIn } from "../features/userSlice";
+
 const LogIn = () => {
     const {
         register,
@@ -9,21 +12,33 @@ const LogIn = () => {
         formState: { errors },
     } = useForm();
     const navigate = useNavigate();
+    let disp=useDispatch()
     const onSubmit = async (data) => {
-        try {
-            const response = await checkUser(data);
-            const user = response.data;
 
-            if (user) {
-                console.log("Login successful:", user);
-                navigate("/home");
-            } else {
-                alert("Invalid username or password");
-            }
-        } catch (error) {
-            console.error("Login error:", error);
-            alert("Failed to log in. Please try again.");
-        }
+        login(data.username,data.password).then(res=>{
+            alert("login  ok ")
+            disp(userIn(res.data))
+            navigate("/home");
+        }).catch(err=>{
+            console.log(err)
+            alert(err.response.data.message)
+        })
+
+        // try {
+        //     const response = await checkUser(data);
+        //     const user = response.data;
+
+        //     if (user) {
+        //         console.log("Login successful:", user);
+        //         navigate("/home");
+        //     } else {
+        //         alert("Invalid username or password");
+
+        //     }
+        // } catch (error) {
+        //     console.error("Login error:", error);
+        //     alert("Failed to log in. Please try again.");
+        // }
     };
 
 

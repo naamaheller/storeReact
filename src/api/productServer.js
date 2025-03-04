@@ -9,3 +9,6 @@ export const getAllProduct = () => {
 export const getProductById = (id) => {
     return axios.get(`${baseUrl}/${id}`);
 }
+export const addProduct = (product) =>{
+    return axios.post(`${baseUrl}`, product);
+}

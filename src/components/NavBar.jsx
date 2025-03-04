@@ -12,6 +12,12 @@ const NavBar = () => {
                 <li>
                     <Link to="LogIn">LogIn</Link>
                 </li>
+                <li>
+                    <Link to="SignUp">SignUp</Link>
+                </li>
+                <li>
+                    <Link to="AddProduct">AddProduct</Link>
+                </li>
             </ul>
         </nav>
     );

@@ -18,7 +18,7 @@ const ShowProduct = () => {
         });
     }, [id]);
 
-    if (!productData) return;
+    if (!productData) return null;
 
     return (
         <div style={{
@@ -48,8 +48,14 @@ const ShowProduct = () => {
                 <input type="button" value="+" onClick={() => {
                     dispatch(addToCart(productData));
                     navigate("/home");
-                    dispatch(openCart())
+                    dispatch(openCart());
                 }} />
+                <button onClick={() => {
+                    console.log("Navigating to edit:", productData);
+                    navigate(`/edit-product/${productData.id}`);
+                }}>
+                    Edit
+                </button>
             </div>
         </div>
     );
